@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommender</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+
+        }
+
+
+        nav {
+            background-color: #4CAF50;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        nav h1 {
+            margin: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+        }
+
+        form {
+            display: inline-block;
+            text-align: left;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #ffffff;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #book_input {
+            padding: 8px;
+            width: 200px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #ffffff;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>Book Recommender</h1>
+    </nav>
+
+    <form action="/recommend" method="post">
+        <label for="book_input">Enter a Book title:</label>
+        <input type="text" id="book_input" name="book_input" required>
+        <button type="submit">Recommend Books</button>
+    </form>
+
+    {% if user_input %}
+        <p>You entered: {{ user_input }}</p>
+    {% endif %}
+
+    {% if recommended_books %}
+        <h2>Recommended Books:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Book Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in recommended_books %}
+                    <tr>
+                        <td>{{ book }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>
